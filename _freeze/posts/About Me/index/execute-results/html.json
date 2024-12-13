@@ -1,0 +1,15 @@
+{
+  "hash": "6917e9a1cea57dfe7943daf45325b74b",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"About Me\"\nauthor: \"Kye Xiong\"\ndate: \"2024-12-12\"\ncategories: [news, code, analysis]\nimage: \"image.jpg\"\n---\n\n\n\nHi, I’m Kye Xiong, a senior at the University of Illinois at Urbana-Champaign majoring in Information Science + Data Science. I’m passionate about data science and love using data to uncover insights. Outside of academics, I enjoy snowboarding, photography, and playing basketball. My projects include analyzing NBA jersey sales trends and creating user-friendly data visualizations. Through this blog, I aim to share my journey in data science, one dataset at a time!\n\n---\n\nThis is a post with executable code.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n1 + 1\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 2\n```\n\n\n:::\n:::\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

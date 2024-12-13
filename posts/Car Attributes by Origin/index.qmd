@@ -1,0 +1,61 @@
+---
+title: "Car Attributes by Origin"
+author: "Kye Xiong"
+date: "2024-12-12"
+categories: [code, analysis]
+image: "DSC05235.JPG"
+---
+Introduction:
+This post examines how attributes like weight and horsepower differ by the car’s country of origin. We’ll explore whether cars from different regions have unique characteristics.
+
+Dataset:
+The dataset used is the “Automobile.csv” file sourced from Kaggle.
+
+Reference:
+Elmetwally, T. (2023, May 28). Car information dataset. Kaggle. https://www.kaggle.com/datasets/tawfikelmetwally/automobile-dataset/data 
+---
+
+This is a post with executable code.
+
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+
+# Load the data
+automobile <- read.csv("Automobile copy.csv")
+```
+
+```{r}
+# Boxplot of car weight by origin
+ggplot(automobile, aes(x = origin, y = weight, fill = origin)) +
+  geom_boxplot() +
+  labs(title = "Distribution of Car Weights by Origin",
+       x = "Origin",
+       y = "Weight") +
+  theme_minimal()
+```
+
+```{r}
+# Remove rows with NA values in horsepower
+cleaned_automobile <- automobile %>%
+  filter(!is.na(horsepower))
+
+# Plot horsepower distribution by origin
+ggplot(cleaned_automobile, aes(x = horsepower, fill = origin)) +
+  geom_density(alpha = 0.5) +
+  labs(
+    title = "Horsepower Distribution by Origin",
+    x = "Horsepower",
+    y = "Density"
+  ) +
+  theme_minimal()
+sum(is.na(automobile$horsepower))
+
+```
+
+**Findings**
+
+•	Cars from the USA are generally heavier than those from Europe and Japan.
+
+•	Horsepower distribution varies significantly, with American cars tending to have higher horsepower.

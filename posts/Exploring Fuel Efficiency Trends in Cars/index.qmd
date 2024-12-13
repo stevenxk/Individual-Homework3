@@ -1,0 +1,64 @@
+---
+title: "Exploring Fuel Efficiency Trends in Cars"
+author: "Kye Xiong"
+date: "2024-12-12"
+categories: [code, analysis]
+image: "IMG_4642.jpg"
+---
+Introduction:
+In this analysis, I'm going to explore how fuel efficiency, measured in miles per gallon (mpg), varies based on the number of engine cylinders and model year. We’ll also examine whether cars with fewer cylinders tend to be more fuel-efficient.
+
+Dataset:
+The dataset used for this analysis is the “Automobile.csv” file sourced from Kaggle. It contains information about car attributes such as mpg, cylinders, displacement, and origin.
+
+Reference:
+Elmetwally, T. (2023, May 28). Car information dataset. Kaggle. https://www.kaggle.com/datasets/tawfikelmetwally/automobile-dataset/data 
+---
+
+This is a post with executable code.
+
+```{r}
+# Load required libraries
+library(ggplot2)
+library(dplyr)
+
+# Check the working directory
+getwd()
+automobile <- read.csv("Automobile.csv")
+head(automobile)
+```
+
+```         
+```
+
+```{r}
+# Summarize average mpg by number of cylinders
+mpg_cylinders <- automobile %>%
+  group_by(cylinders) %>%
+  summarize(avg_mpg = mean(mpg, na.rm = TRUE))
+
+# Plot the results
+ggplot(mpg_cylinders, aes(x = as.factor(cylinders), y = avg_mpg)) +
+  geom_bar(stat = "identity", fill = "steelblue") +
+  labs(title = "Average Fuel Efficiency by Cylinder Count",
+       x = "Number of Cylinders",
+       y = "Average MPG") +
+  theme_minimal()
+```
+
+```{r}
+# Plot mpg by model year
+ggplot(automobile, aes(x = model_year, y = mpg)) +
+  geom_point(alpha = 0.5, color = "darkgreen") +
+  geom_smooth(method = "loess", color = "blue", se = FALSE) +
+  labs(title = "Fuel Efficiency Trends Over Model Years",
+       x = "Model Year",
+       y = "Miles Per Gallon (MPG)") +
+  theme_minimal()
+```
+
+Findings
+
+• Cars with fewer cylinders tend to have higher average mpg, reflecting better fuel efficiency.
+
+• Fuel efficiency has improved over time, as seen in the increasing mpg trend across model years.

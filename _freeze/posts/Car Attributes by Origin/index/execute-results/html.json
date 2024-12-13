@@ -1,0 +1,17 @@
+{
+  "hash": "ce48e8335693f992890bdbcc69eae5bc",
+  "result": {
+    "engine": "knitr",
+    "markdown": "---\ntitle: \"Car Attributes by Origin\"\nauthor: \"Kye Xiong\"\ndate: \"2024-12-12\"\ncategories: [code, analysis]\nimage: \"DSC05235.JPG\"\n---\n\n\nIntroduction:\nThis post examines how attributes like weight and horsepower differ by the car’s country of origin. We’ll explore whether cars from different regions have unique characteristics.\n\nDataset:\nThe dataset used is the “Automobile.csv” file sourced from Kaggle.\n\nReference:\nElmetwally, T. (2023, May 28). Car information dataset. Kaggle. https://www.kaggle.com/datasets/tawfikelmetwally/automobile-dataset/data \n\n---\n\nThis is a post with executable code.\n\n\n::: {.cell}\n\n```{.r .cell-code}\n# Load required libraries\nlibrary(ggplot2)\nlibrary(dplyr)\n```\n\n::: {.cell-output .cell-output-stderr}\n\n```\n\nAttaching package: 'dplyr'\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nThe following objects are masked from 'package:stats':\n\n    filter, lag\n```\n\n\n:::\n\n::: {.cell-output .cell-output-stderr}\n\n```\nThe following objects are masked from 'package:base':\n\n    intersect, setdiff, setequal, union\n```\n\n\n:::\n\n```{.r .cell-code}\n# Load the data\nautomobile <- read.csv(\"Automobile copy.csv\")\n```\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n# Boxplot of car weight by origin\nggplot(automobile, aes(x = origin, y = weight, fill = origin)) +\n  geom_boxplot() +\n  labs(title = \"Distribution of Car Weights by Origin\",\n       x = \"Origin\",\n       y = \"Weight\") +\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-2-1.png){width=672}\n:::\n:::\n\n::: {.cell}\n\n```{.r .cell-code}\n# Remove rows with NA values in horsepower\ncleaned_automobile <- automobile %>%\n  filter(!is.na(horsepower))\n\n# Plot horsepower distribution by origin\nggplot(cleaned_automobile, aes(x = horsepower, fill = origin)) +\n  geom_density(alpha = 0.5) +\n  labs(\n    title = \"Horsepower Distribution by Origin\",\n    x = \"Horsepower\",\n    y = \"Density\"\n  ) +\n  theme_minimal()\n```\n\n::: {.cell-output-display}\n![](index_files/figure-html/unnamed-chunk-3-1.png){width=672}\n:::\n\n```{.r .cell-code}\nsum(is.na(automobile$horsepower))\n```\n\n::: {.cell-output .cell-output-stdout}\n\n```\n[1] 6\n```\n\n\n:::\n:::\n\n\n**Findings**\n\n•\tCars from the USA are generally heavier than those from Europe and Japan.\n\n•\tHorsepower distribution varies significantly, with American cars tending to have higher horsepower.\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}
